@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bàn Tìm Villa</title>
+<meta name="description" content="Tra cứu quỹ villa · resort · khách sạn nội bộ bằng câu hỏi tự nhiên">
+<meta name="theme-color" content="#173832">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bàn Villa">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  :root{
+    --teal-deep:#173832;
+    --teal-panel:#1f453d;
+    --paper:#FAF6EC;
+    --paper-dim:#EFE8D6;
+    --ink:#1C2521;
+    --ink-soft:#5B655F;
+    --ochre:#C6902F;
+    --clay:#A94E22;
+    --jade-line: rgba(250,246,236,0.14);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--teal-deep);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(255,255,255,0.04), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(255,255,255,0.03), transparent 45%);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .app{ max-width:1180px; margin:0 auto; padding:16px 16px 60px; }
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--jade-line);
+    padding-bottom:16px; margin-bottom:18px; gap:12px; flex-wrap:wrap;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{
+    width:38px;height:38px; border:1.5px solid var(--ochre); border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif; font-weight:600; font-size:16px; color:var(--ochre);
+    transform:rotate(-2deg); flex-shrink:0;
+  }
+  .brand h1{ font-family:'Fraunces', serif; font-weight:600; font-size:21px; margin:0; }
+  .brand p{ margin:1px 0 0; font-size:11.5px; color:#B9C7BF; }
+  .stat-strip{ display:flex; gap:16px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:#B9C7BF; }
+  .stat-strip b{ display:block; color:var(--paper); font-size:16px; font-family:'Fraunces', serif; font-weight:600; }
+
+  #installBanner{
+    display:none; background:var(--ochre); color:var(--teal-deep);
+    border-radius:7px; padding:10px 14px; margin-bottom:16px;
+    font-size:12.5px; align-items:center; justify-content:space-between; gap:10px; font-weight:500;
+  }
+  #installBanner button{
+    background:var(--teal-deep); color:var(--paper); border:none; border-radius:5px;
+    padding:7px 12px; font-weight:700; font-size:12px; cursor:pointer; white-space:nowrap;
+  }
+  #installBanner .dismiss{ background:transparent; color:var(--teal-deep); padding:4px; font-size:16px; }
+
+  .layout{ display:grid; grid-template-columns:360px 1fr; gap:18px; align-items:start; }
+  @media (max-width:860px){ .layout{grid-template-columns:1fr;} }
+
+  .desk{ background:var(--teal-panel); border:1px solid var(--jade-line); border-radius:8px; padding:18px; }
+  @media (min-width:861px){ .desk{ position:sticky; top:16px; } }
+
+  .tabs{ display:flex; gap:4px; margin-bottom:14px; background:rgba(0,0,0,0.15); border-radius:6px; padding:3px; }
+  .tab{
+    flex:1; text-align:center; padding:8px 6px; border-radius:5px; font-size:12.5px; font-weight:600;
+    cursor:pointer; color:#AFC0B6; background:none; border:none; font-family:'Inter', sans-serif;
+  }
+  .tab.active{ background:var(--paper); color:var(--ink); }
+
+  .desk h2{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:14px; margin:0 0 4px; color:var(--ochre); }
+  .desk p.hint{ font-size:12px; color:#AFC0B6; line-height:1.5; margin:0 0 14px; }
+
+  #log{ display:flex; flex-direction:column; gap:9px; max-height:300px; overflow-y:auto; margin-bottom:12px; padding-right:4px; }
+  #log::-webkit-scrollbar{width:5px;}
+  #log::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:3px;}
+  .msg{ font-size:13px; line-height:1.5; padding:9px 11px; border-radius:6px; max-width:92%; }
+  .msg.user{ background:rgba(255,255,255,0.06); align-self:flex-end; }
+  .msg.ai{ background:var(--paper); color:var(--ink); align-self:flex-start; border-left:3px solid var(--ochre); }
+  .msg.ai .tag{ display:block; font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.6px; color:var(--clay); margin-bottom:3px; text-transform:uppercase; }
+
+  form{ display:flex; gap:8px; }
+  input[type=text], input[type=number]{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:5px;
+    padding:10px 11px; color:var(--paper); font-family:'Inter', sans-serif; font-size:13px; width:100%;
+  }
+  input::placeholder{ color:#7E8D85; }
+  input:focus{ outline:2px solid var(--ochre); outline-offset:1px; }
+  #chatInput{ flex:1; }
+  button.primary{
+    background:var(--ochre); color:var(--teal-deep); border:none; border-radius:5px; padding:0 15px;
+    font-weight:700; font-size:13px; cursor:pointer; font-family:'Inter', sans-serif;
+  }
+  button.primary:disabled{ opacity:0.5; }
+  button.ghost{
+    background:none; border:1px solid rgba(255,255,255,0.25); color:var(--paper);
+    border-radius:5px; padding:9px 12px; font-size:12.5px; font-weight:600; cursor:pointer; width:100%; margin-top:10px;
+  }
+
+  .examples{ margin-top:12px; display:flex; flex-wrap:wrap; gap:6px; }
+  .example-chip{
+    font-size:11px; color:#C9D6CE; border:1px dashed rgba(255,255,255,0.25); border-radius:20px;
+    padding:5px 10px; cursor:pointer; background:none; font-family:'Inter', sans-serif;
+  }
+  .example-chip:hover{ border-color:var(--ochre); color:var(--ochre); }
+
+  .field{ margin-bottom:12px; }
+  .field label{ display:block; font-size:11.5px; color:#B9C7BF; margin-bottom:5px; font-weight:600; }
+  select{
+    width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:5px;
+    padding:10px 11px; color:var(--paper); font-size:13px; font-family:'Inter', sans-serif;
+  }
+  .range-row{ display:flex; gap:8px; }
+
+  #historyRow{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+  .hist-chip{
+    font-size:10.5px; background:rgba(255,255,255,0.06); border:1px solid var(--jade-line); color:#C9D6CE;
+    border-radius:20px; padding:4px 9px; cursor:pointer;
+  }
+
+  .results-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
+  .results-head h2{ font-family:'Fraunces', serif; font-weight:600; font-size:18px; margin:0; }
+  .results-head span{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:#AFC0B6; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:14px; }
+
+  .ticket{
+    background:var(--paper); color:var(--ink); border-radius:8px; overflow:hidden; position:relative;
+    box-shadow:0 6px 18px rgba(0,0,0,0.22); display:flex; flex-direction:column; cursor:pointer;
+    border:none; text-align:left; font-family:inherit; padding:0;
+  }
+  .ticket .band{ height:6px; width:100%; }
+  .ticket .body{ padding:14px 14px 12px; flex:1; }
+  .ticket .loc-tag{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.5px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .ticket h3{ font-family:'Fraunces', serif; font-weight:600; font-size:16px; margin:0 0 8px; line-height:1.25; }
+  .ticket .meta{ display:flex; gap:12px; font-size:11.5px; color:var(--ink-soft); margin-bottom:9px; }
+  .ticket .amenities{ display:flex; flex-wrap:wrap; gap:5px; }
+  .amen{ font-size:10px; background:var(--paper-dim); border-radius:3px; padding:3px 7px; color:var(--ink-soft); }
+  .stub{ border-top:1.5px dashed #C9BFA4; padding:11px 14px; display:flex; justify-content:space-between; align-items:center; position:relative; }
+  .stub::before, .stub::after{ content:''; position:absolute; top:-8px; width:16px;height:16px; background:var(--teal-deep); border-radius:50%; }
+  .stub::before{left:-8px;} .stub::after{right:-8px;}
+  .stub .price{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:15px; color:var(--clay); }
+  .stub .price small{ font-size:9.5px; font-weight:500; color:var(--ink-soft); display:block; font-family:'Inter', sans-serif; }
+  .stub .id{ font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:#B7AE94; }
+
+  .empty{ background:var(--teal-panel); border:1px dashed var(--jade-line); border-radius:8px; padding:36px 22px; text-align:center; color:#B9C7BF; font-size:13px; line-height:1.6; }
+  .empty b{ color:var(--paper); font-family:'Fraunces', serif; font-weight:600; font-size:15px; display:block; margin-bottom:6px; }
+
+  .loading-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:#AFC0B6; font-family:'IBM Plex Mono', monospace; }
+  .dot{ width:6px;height:6px;border-radius:50%; background:var(--ochre); animation:pulse 1.1s infinite ease-in-out; }
+  .dot:nth-child(2){animation-delay:0.15s;} .dot:nth-child(3){animation-delay:0.3s;}
+  @keyframes pulse{0%,80%,100%{opacity:0.25;}40%{opacity:1;}}
+
+  /* Modal */
+  .overlay{
+    display:none; position:fixed; inset:0; background:rgba(10,20,17,0.65); z-index:50;
+    align-items:flex-end; justify-content:center; padding:0;
+  }
+  @media (min-width:640px){ .overlay{ align-items:center; padding:20px; } }
+  .overlay.open{ display:flex; }
+  .modal{
+    background:var(--paper); color:var(--ink); width:100%; max-width:480px; border-radius:14px 14px 0 0;
+    max-height:88vh; overflow-y:auto; animation:slideUp 0.2s ease;
+  }
+  @media (min-width:640px){ .modal{ border-radius:12px; } }
+  @keyframes slideUp{ from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+  .modal .mband{ height:8px; width:100%; }
+  .modal-body{ padding:22px; }
+  .modal-close{ float:right; background:var(--paper-dim); border:none; border-radius:50%; width:30px; height:30px; font-size:16px; cursor:pointer; color:var(--ink-soft); }
+  .modal h2{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:6px 0 4px; clear:both; }
+  .modal .loc-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.5px; text-transform:uppercase; color:var(--ink-soft); }
+  .modal .price-big{ font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:26px; color:var(--clay); margin:14px 0 2px; }
+  .modal .price-big small{ font-size:12px; font-weight:500; color:var(--ink-soft); font-family:'Inter', sans-serif; }
+  .modal .amenities{ display:flex; flex-wrap:wrap; gap:6px; margin:16px 0; }
+  .modal .amen{ font-size:11.5px; background:var(--paper-dim); border-radius:4px; padding:5px 9px; color:var(--ink-soft); }
+  .modal .id-row{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); margin-bottom:18px; }
+  .modal-actions{ display:flex; gap:8px; }
+  .modal-actions button{ flex:1; border:none; border-radius:6px; padding:12px; font-weight:700; font-size:13px; cursor:pointer; font-family:'Inter', sans-serif; }
+  .btn-copy{ background:var(--ink); color:var(--paper); }
+  .btn-copy.copied{ background:#4C7A5E; }
+
+  footer{ margin-top:26px; font-size:11px; color:#7E8D85; text-align:center; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">
+      <div class="brand-mark">BV</div>
+      <div>
+        <h1>Bàn Tìm Villa</h1>
+        <p>Tra cứu quỹ nội bộ villa · resort · khách sạn</p>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div><b id="stat-total">0</b>sản phẩm</div>
+      <div><b id="stat-regions">0</b>khu vực</div>
+    </div>
+  </header>
+
+  <div id="installBanner">
+    <span id="installText">Cài app vào điện thoại để mở nhanh như app thật.</span>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <button id="installBtn">Cài đặt</button>
+      <button class="dismiss" id="dismissInstall">✕</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="desk">
+      <div class="tabs">
+        <button class="tab active" data-tab="chat">Hỏi AI</button>
+        <button class="tab" data-tab="filter">Lọc thủ công</button>
+      </div>
+
+      <div id="tab-chat">
+        <h2>Hỏi như hỏi đồng nghiệp</h2>
+        <p class="hint">Gõ ngày, số khách, ngân sách — AI sẽ tách yêu cầu và lọc trong quỹ sản phẩm.</p>
+        <div id="log"></div>
+        <form id="chatForm">
+          <input type="text" id="chatInput" placeholder="vd: villa Phan Thiết 15 người giá dưới 9tr" autocomplete="off">
+          <button type="submit" class="primary" id="sendBtn">Hỏi</button>
+        </form>
+        <div class="examples">
+          <button type="button" class="example-chip" data-q="villa Phan Thiết 15 người ngày 8/8 giá 9tr">Phan Thiết 15 người 9tr</button>
+          <button type="button" class="example-chip" data-q="resort Phú Quốc có hồ bơi riêng cho 20 khách">Phú Quốc 20 khách</button>
+          <button type="button" class="example-chip" data-q="khách sạn Đà Lạt tầm 3 triệu 1 đêm cho 4 người">Đà Lạt 4 người ~3tr</button>
+        </div>
+        <div id="historyRow"></div>
+      </div>
+
+      <div id="tab-filter" style="display:none;">
+        <h2>Lọc theo tiêu chí</h2>
+        <p class="hint">Dùng khi bạn đã biết chính xác điều kiện cần tìm.</p>
+        <div class="field">
+          <label>Khu vực</label>
+          <select id="fRegion">
+            <option value="">Tất cả khu vực</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Số khách tối thiểu</label>
+          <input type="number" id="fGuests" min="1" placeholder="vd: 15">
+        </div>
+        <div class="field">
+          <label>Ngân sách tối đa / đêm (VND)</label>
+          <input type="number" id="fPrice" min="0" step="100000" placeholder="vd: 9000000">
+        </div>
+        <button class="primary" id="applyFilterBtn" style="width:100%;">Áp dụng</button>
+        <button class="ghost" id="clearFilterBtn">Xoá bộ lọc</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="results-head">
+        <h2>Kết quả khớp</h2>
+        <span id="resultCount">— chưa có câu hỏi —</span>
+      </div>
+      <div id="results"><div class="empty"><b>Sẵn sàng tra cứu</b>Hỏi AI hoặc dùng bộ lọc thủ công bên trái, kết quả khớp nhất sẽ hiện ra đây.</div></div>
+    </div>
+  </div>
+
+  <footer>Demo — dữ liệu villa là dữ liệu mẫu, chưa nối kho thật. Tình trạng còn trống theo ngày cần sale xác nhận lại với chủ nhà.</footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="mband" id="modalBand"></div>
+    <div class="modal-body">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="loc-tag" id="modalLoc"></div>
+      <h2 id="modalName"></h2>
+      <div class="id-row" id="modalId"></div>
+      <div class="price-big" id="modalPrice"></div>
+      <div class="amenities" id="modalAmen"></div>
+      <div class="modal-actions">
+        <button class="btn-copy" id="copyBtn">Copy để gửi khách</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DÁN LINK GOOGLE SHEET (đã Publish to web, dạng CSV) VÀO ĐÂY.
+// Để trống "" thì app dùng danh sách mẫu bên dưới để demo.
+// ============================================================
+const SHEET_CSV_URL = "";
+
+// Danh sách mẫu — chỉ dùng khi chưa nối Sheet, hoặc khi link Sheet lỗi.
+const FALLBACK_PRODUCTS = [
+  {id:"PT-014", name:"Ocean Cliff Villa", region:"Phan Thiết", guests:16, price:9200000, tags:["Hồ bơi vô cực","Sát biển","6 phòng ngủ"]},
+  {id:"PT-021", name:"Mũi Né Garden Villa", region:"Phan Thiết", guests:14, price:8500000, tags:["Sân vườn","5 phòng ngủ","Bếp riêng"]},
+  {id:"PQ-003", name:"Sunset Bay Resort Villa", region:"Phú Quốc", guests:20, price:14200000, tags:["Hồ bơi riêng","Bãi biển riêng","8 phòng ngủ"]},
+  {id:"DL-005", name:"Pine Hill Cottage", region:"Đà Lạt", guests:6, price:2900000, tags:["Lò sưởi","View đồi thông","3 phòng ngủ"]},
+  {id:"NT-002", name:"Diamond Bay Villa", region:"Nha Trang", guests:15, price:8700000, tags:["Hồ bơi riêng","4 phút ra biển","6 phòng ngủ"]},
+  {id:"HT-007", name:"Ancient Town Villa", region:"Hội An", guests:8, price:4600000, tags:["Gần phố cổ","3 phòng ngủ"]},
+  {id:"VT-004", name:"Vũng Tàu Beachfront Villa", region:"Vũng Tàu", guests:13, price:7200000, tags:["Sát biển","5 phòng ngủ"]},
+];
+
+const REGION_PALETTE = ["#2E6E63","#A94E22","#5B4A8A","#C6902F","#7A5230","#1E5E6B","#6B3FA0","#2F6690","#8A3324","#3E7C4A"];
+function colorForRegion(region){
+  let hash = 0;
+  for(let i=0;i<region.length;i++){ hash = region.charCodeAt(i) + ((hash<<5)-hash); }
+  return REGION_PALETTE[Math.abs(hash) % REGION_PALETTE.length];
+}
+
+// Chấp nhận vài cách đặt tên cột khác nhau trong Sheet, để đỡ phải sửa tiêu đề cột cho khớp tuyệt đối.
+function matchHeader(h, candidates){
+  const n = normalize(h).replace(/\s+/g,'');
+  return candidates.some(c => n.includes(normalize(c).replace(/\s+/g,'')));
+}
+function toNumber(v){
+  if(v==null) return null;
+  const digits = String(v).replace(/[^\d]/g,'');
+  return digits ? parseInt(digits) : null;
+}
+
+function rowsToProducts(rows){
+  if(!rows.length) return [];
+  const headers = Object.keys(rows[0]);
+  const col = {
+    id: headers.find(h=>matchHeader(h,['ma villa','ma san pham','id'])),
+    name: headers.find(h=>matchHeader(h,['ten villa','ten san pham','name'])),
+    region: headers.find(h=>matchHeader(h,['khu vuc','region'])),
+    guests: headers.find(h=>matchHeader(h,['suc chua','so khach','guests'])),
+    price: headers.find(h=>matchHeader(h,['gia','price'])),
+    tags: headers.find(h=>matchHeader(h,['tien ich','tags','amenities'])),
+  };
+  return rows
+    .filter(r => (col.name && r[col.name]) )
+    .map((r,i)=>{
+      const region = col.region ? String(r[col.region]||'').trim() : 'Khác';
+      return {
+        id: (col.id && r[col.id]) ? String(r[col.id]).trim() : ('SP-'+(i+1)),
+        name: String(r[col.name]).trim(),
+        region: region || 'Khác',
+        guests: col.guests ? (toNumber(r[col.guests]) || 0) : 0,
+        price: col.price ? (toNumber(r[col.price]) || 0) : 0,
+        tags: col.tags ? String(r[col.tags]||'').split(/[;,]/).map(t=>t.trim()).filter(Boolean) : [],
+        band: colorForRegion(region || 'Khác'),
+      };
+    });
+}
+
+function loadProducts(){
+  return new Promise((resolve)=>{
+    if(!SHEET_CSV_URL){ resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)}))); return; }
+    Papa.parse(SHEET_CSV_URL, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: (res)=>{
+        const products = rowsToProducts(res.data);
+        resolve(products.length ? products : FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
+      },
+      error: ()=>{
+        resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
+      }
+    });
+  });
+}
+
+let PRODUCTS = [];
+const fRegion = document.getElementById('fRegion');
+
+function normalize(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+// ---------- setup ----------
+async function initApp(){
+  document.getElementById('stat-total').textContent = '…';
+  PRODUCTS = await loadProducts();
+
+  document.getElementById('stat-total').textContent = PRODUCTS.length;
+  const regions = [...new Set(PRODUCTS.map(p=>p.region))];
+  document.getElementById('stat-regions').textContent = regions.length;
+  regions.forEach(r=>{
+    const opt = document.createElement('option');
+    opt.value = r; opt.textContent = r;
+    fRegion.appendChild(opt);
+  });
+  renderEmpty('Sẵn sàng tra cứu', `Đã tải ${PRODUCTS.length} sản phẩm. Hỏi AI hoặc dùng bộ lọc thủ công bên trái.`);
+}
+
+const log = document.getElementById('log');
+const form = document.getElementById('chatForm');
+const input = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+const resultsEl = document.getElementById('results');
+const resultCount = document.getElementById('resultCount');
+let history = []; // session-only search history
+
+function fmtVND(n){ return n.toLocaleString('vi-VN') + 'đ'; }
+
+// ---------- tabs ----------
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('tab-chat').style.display = t.dataset.tab==='chat' ? 'block':'none';
+    document.getElementById('tab-filter').style.display = t.dataset.tab==='filter' ? 'block':'none';
+  });
+});
+
+// ---------- chat log ----------
+function addMsg(text, who, tag){
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  if(who==='ai'){
+    const t = document.createElement('span'); t.className='tag'; t.textContent = tag || 'Bàn Tìm Villa';
+    div.appendChild(t);
+    const body = document.createElement('span'); body.textContent = text; div.appendChild(body);
+  } else {
+    div.textContent = text;
+  }
+  log.appendChild(div); log.scrollTop = log.scrollHeight;
+  return div;
+}
+
+function renderEmpty(msg, sub){
+  resultsEl.innerHTML = `<div class="empty"><b>${msg}</b>${sub}</div>`;
+}
+
+function renderResults(list){
+  if(list.length===0){
+    renderEmpty('Không khớp sản phẩm nào', 'Thử nới ngân sách, giảm số khách, hoặc đổi khu vực rồi hỏi lại.');
+    resultCount.textContent = '0 kết quả';
+    return;
+  }
+  resultCount.textContent = list.length + ' kết quả, xếp theo mức khớp';
+  resultsEl.innerHTML = '';
+  const grid = document.createElement('div'); grid.className='grid';
+  list.forEach(p=>{
+    const card = document.createElement('button');
+    card.className='ticket';
+    card.innerHTML = `
+      <div class="band" style="background:${p.band}"></div>
+      <div class="body">
+        <div class="loc-tag">${p.region}</div>
+        <h3>${p.name}</h3>
+        <div class="meta"><span>👥 ${p.guests} khách</span></div>
+        <div class="amenities">${p.tags.map(t=>`<span class="amen">${t}</span>`).join('')}</div>
+      </div>
+      <div class="stub">
+        <div class="price">${fmtVND(p.price)}<small>/ đêm</small></div>
+        <div class="id">${p.id}</div>
+      </div>`;
+    card.addEventListener('click', ()=>openModal(p));
+    grid.appendChild(card);
+  });
+  resultsEl.appendChild(grid);
+}
+
+function fallbackFilter(query){
+  const q = normalize(query);
+  const priceMatch = q.match(/(\d+([.,]\d+)?)\s*(tr|trieu|triệu)/);
+  const priceMax = priceMatch ? parseFloat(priceMatch[1].replace(',','.')) * 1000000 : null;
+  const guestMatch = q.match(/(\d+)\s*(nguoi|người|khach|khách)/);
+  const guestsMin = guestMatch ? parseInt(guestMatch[1]) : null;
+  let region = null;
+  for(const p of PRODUCTS){ if(q.includes(normalize(p.region))){ region = p.region; break; } }
+  return {location:region, guests_min:guestsMin, price_max:priceMax, reply:null};
+}
+
+function applyFilters(f){
+  return PRODUCTS.filter(p=>{
+    if(f.location && normalize(p.region) !== normalize(f.location)) return false;
+    if(f.guests_min && p.guests < f.guests_min) return false;
+    if(f.price_max && p.price > f.price_max * 1.1) return false;
+    return true;
+  }).sort((a,b)=>{
+    if(f.price_max) return Math.abs(a.price-f.price_max) - Math.abs(b.price-f.price_max);
+    return b.guests - a.guests;
+  });
+}
+
+async function askAI(query){
+  const response = await fetch('/api/search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query })
+  });
+  if(!response.ok) throw new Error('api error');
+  return await response.json();
+}
+
+function pushHistory(query){
+  history = [query, ...history.filter(h=>h!==query)].slice(0,6);
+  const row = document.getElementById('historyRow');
+  row.innerHTML = '';
+  history.forEach(h=>{
+    const chip = document.createElement('button');
+    chip.className='hist-chip'; chip.textContent = h;
+    chip.addEventListener('click', ()=>handleQuery(h));
+    row.appendChild(chip);
+  });
+}
+
+async function handleQuery(query){
+  addMsg(query, 'user');
+  input.value=''; sendBtn.disabled = true;
+  const loadingDiv = addMsg('', 'ai');
+  loadingDiv.innerHTML = '<span class="tag">Bàn Tìm Villa</span><div class="loading-row">Đang lọc quỹ sản phẩm <span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+
+  let filters; let usedFallback = false;
+  try{ filters = await askAI(query); }
+  catch(e){ filters = fallbackFilter(query); usedFallback = true; }
+
+  const matches = applyFilters(filters);
+  let replyText = filters.reply;
+  if(!replyText){
+    replyText = matches.length
+      ? `Tìm được ${matches.length} sản phẩm khớp${filters.location ? ' tại '+filters.location : ''}${filters.guests_min ? ', từ '+filters.guests_min+' khách' : ''}${filters.price_max ? ', giá quanh '+fmtVND(filters.price_max) : ''}.`
+      : `Chưa thấy sản phẩm nào khớp đủ tiêu chí, thử nới điều kiện xem sao.`;
+  }
+  loadingDiv.innerHTML = `<span class="tag">${usedFallback ? 'Bàn Tìm Villa · chế độ lọc nhanh' : 'Bàn Tìm Villa'}</span>`;
+  const body = document.createElement('span'); body.textContent = replyText; loadingDiv.appendChild(body);
+
+  renderResults(matches);
+  pushHistory(query);
+  sendBtn.disabled = false; input.focus();
+}
+
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  const q = input.value.trim();
+  if(!q) return;
+  handleQuery(q);
+});
+document.querySelectorAll('.example-chip').forEach(btn=>{
+  btn.addEventListener('click', ()=> handleQuery(btn.dataset.q));
+});
+
+// ---------- manual filters ----------
+document.getElementById('applyFilterBtn').addEventListener('click', ()=>{
+  const f = {
+    location: fRegion.value || null,
+    guests_min: document.getElementById('fGuests').value ? parseInt(document.getElementById('fGuests').value) : null,
+    price_max: document.getElementById('fPrice').value ? parseInt(document.getElementById('fPrice').value) : null,
+  };
+  renderResults(applyFilters(f));
+  resultCount.textContent = applyFilters(f).length + ' kết quả (lọc thủ công)';
+});
+document.getElementById('clearFilterBtn').addEventListener('click', ()=>{
+  fRegion.value=''; document.getElementById('fGuests').value=''; document.getElementById('fPrice').value='';
+  renderEmpty('Đã xoá bộ lọc', 'Chọn tiêu chí mới hoặc chuyển sang tab Hỏi AI.');
+  resultCount.textContent = '— chưa có câu hỏi —';
+});
+
+// ---------- detail modal ----------
+const overlay = document.getElementById('overlay');
+let currentProduct = null;
+function openModal(p){
+  currentProduct = p;
+  document.getElementById('modalBand').style.background = p.band;
+  document.getElementById('modalLoc').textContent = p.region;
+  document.getElementById('modalName').textContent = p.name;
+  document.getElementById('modalId').textContent = 'Mã sản phẩm: ' + p.id + ' · Tối đa ' + p.guests + ' khách';
+  document.getElementById('modalPrice').innerHTML = fmtVND(p.price) + '<small> / đêm</small>';
+  document.getElementById('modalAmen').innerHTML = p.tags.map(t=>`<span class="amen">${t}</span>`).join('');
+  document.getElementById('copyBtn').classList.remove('copied');
+  document.getElementById('copyBtn').textContent = 'Copy để gửi khách';
+  overlay.classList.add('open');
+}
+document.getElementById('modalClose').addEventListener('click', ()=> overlay.classList.remove('open'));
+overlay.addEventListener('click', e=>{ if(e.target===overlay) overlay.classList.remove('open'); });
+
+document.getElementById('copyBtn').addEventListener('click', async ()=>{
+  if(!currentProduct) return;
+  const p = currentProduct;
+  const text = `🏡 ${p.name} — ${p.region}\n👥 Tối đa ${p.guests} khách\n💰 ${fmtVND(p.price)} / đêm\n✨ ${p.tags.join(' · ')}\nMã: ${p.id}`;
+  try{
+    await navigator.clipboard.writeText(text);
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Đã copy ✓'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='Copy để gửi khách'; btn.classList.remove('copied'); }, 1800);
+  }catch(e){
+    alert(text);
+  }
+});
+
+// ---------- PWA install ----------
+let deferredPrompt;
+const banner = document.getElementById('installBanner');
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredPrompt = e;
+  banner.style.display = 'flex';
+});
+document.getElementById('installBtn').addEventListener('click', async ()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  banner.style.display = 'none';
+});
+document.getElementById('dismissInstall').addEventListener('click', ()=>{ banner.style.display = 'none'; });
+
+// iOS Safari has no beforeinstallprompt — show manual instructions instead
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+if(isIOS && !isStandalone){
+  document.getElementById('installText').textContent = 'Trên iPhone: bấm nút Chia sẻ ⬆️ rồi chọn "Thêm vào MH chính".';
+  document.getElementById('installBtn').style.display = 'none';
+  banner.style.display = 'flex';
+}
+
+// ---------- service worker ----------
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+
+initApp();
+</script>
+</body>
+</html>
