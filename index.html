@@ -210,6 +210,10 @@
     </div>
   </header>
 
+  <div id="dataWarning" style="display:none; background:#8A3324; color:#FAF6EC; border-radius:7px; padding:10px 14px; margin-bottom:16px; font-size:12.5px; font-weight:600;">
+    ⚠️ Không tải được dữ liệu thật từ Google Sheet — đang hiển thị DỮ LIỆU MẪU. Không dùng số liệu này để gửi khách.
+  </div>
+
   <div id="installBanner">
     <span id="installText">Cài app vào điện thoại để mở nhanh như app thật.</span>
     <div style="display:flex; gap:6px; align-items:center;">
@@ -294,12 +298,11 @@
 
 <script>
 // ============================================================
-// DÁN LINK GOOGLE SHEET (đã Publish to web, dạng CSV) VÀO ĐÂY.
-// Để trống "" thì app dùng danh sách mẫu bên dưới để demo.
+// Dữ liệu villa được lấy qua /api/sheet (server đọc SHEET_CSV_URL
+// từ Environment Variables trên Vercel — xem hướng dẫn triển khai).
 // ============================================================
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3h7vgGbKdeCX8PdxYjd5jH4tecS83NRWIqHbI6FSU63iNqWKmoRm7QwgK35irIsgQG0646_cv8f0G/pub?gid=2141844490&single=true&output=csv";
 
-// Danh sách mẫu — chỉ dùng khi chưa nối Sheet, hoặc khi link Sheet lỗi.
+// Danh sách mẫu — CHỈ dùng khi chưa cấu hình Sheet, hoặc khi lấy Sheet thật bị lỗi.
 const FALLBACK_PRODUCTS = [
   {id:"PT-014", name:"Ocean Cliff Villa", region:"Phan Thiết", guests:16, price:9200000, tags:["Hồ bơi vô cực","Sát biển","6 phòng ngủ"]},
   {id:"PT-021", name:"Mũi Né Garden Villa", region:"Phan Thiết", guests:14, price:8500000, tags:["Sân vườn","5 phòng ngủ","Bếp riêng"]},
@@ -355,21 +358,29 @@ function rowsToProducts(rows){
     });
 }
 
+let usingFallbackData = false;
+
 function loadProducts(){
   return new Promise((resolve)=>{
-    if(!SHEET_CSV_URL){ resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)}))); return; }
-    Papa.parse(SHEET_CSV_URL, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      complete: (res)=>{
-        const products = rowsToProducts(res.data);
-        resolve(products.length ? products : FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
-      },
-      error: ()=>{
+    fetch('/api/sheet')
+      .then(res=>{
+        if(!res.ok) throw new Error('sheet api error');
+        return res.text();
+      })
+      .then(csvText=>{
+        const parsed = Papa.parse(csvText, { header:true, skipEmptyLines:true });
+        const products = rowsToProducts(parsed.data);
+        if(products.length){
+          resolve(products);
+        }else{
+          usingFallbackData = true;
+          resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
+        }
+      })
+      .catch(()=>{
+        usingFallbackData = true;
         resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
-      }
-    });
+      });
   });
 }
 
@@ -382,6 +393,9 @@ function normalize(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-
 async function initApp(){
   document.getElementById('stat-total').textContent = '…';
   PRODUCTS = await loadProducts();
+  if(usingFallbackData){
+    document.getElementById('dataWarning').style.display = 'block';
+  }
 
   document.getElementById('stat-total').textContent = PRODUCTS.length;
   const regions = [...new Set(PRODUCTS.map(p=>p.region))];

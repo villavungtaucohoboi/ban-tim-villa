@@ -1,4 +1,4 @@
-const CACHE = 'ban-tim-villa-v1';
+const CACHE = 'ban-tim-villa-v2';
 const SHELL = ['/', '/manifest.json', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -16,8 +16,15 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  const url = event.request.url;
+
   // Never cache API calls — search results must always be fresh.
-  if (event.request.url.includes('/api/')) return;
+  if (url.includes('/api/')) return;
+
+  // Never intercept cross-origin requests (Google Sheet CSV, fonts, PapaParse CDN, etc).
+  // Caching these was the bug: once fetched once, this service worker kept serving
+  // the *first* version of the Google Sheet forever, so edits never showed up.
+  if (!url.startsWith(self.location.origin)) return;
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
