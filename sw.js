@@ -1,4 +1,4 @@
-const CACHE = 'ban-tim-villa-v2';
+const CACHE = 'ban-tim-villa-v3';
 const SHELL = ['/', '/manifest.json', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -18,8 +18,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = event.request.url;
 
-  // Never cache API calls — search results must always be fresh.
-  if (url.includes('/api/')) return;
+  // Never cache API calls, or data.json — dữ liệu villa phải luôn lấy bản mới nhất.
+  if (url.includes('/api/') || url.includes('/data.json')) return;
 
   // Never intercept cross-origin requests (Google Sheet CSV, fonts, PapaParse CDN, etc).
   // Caching these was the bug: once fetched once, this service worker kept serving

@@ -14,7 +14,6 @@
 <meta name="apple-mobile-web-app-title" content="Bàn Villa">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
   :root{
     --teal-deep:#173832;
@@ -211,7 +210,7 @@
   </header>
 
   <div id="dataWarning" style="display:none; background:#8A3324; color:#FAF6EC; border-radius:7px; padding:10px 14px; margin-bottom:16px; font-size:12.5px; font-weight:600;">
-    ⚠️ Không tải được dữ liệu thật từ Google Sheet — đang hiển thị DỮ LIỆU MẪU. Không dùng số liệu này để gửi khách.
+    ⚠️ Không tải được file data.json từ server — thử tải lại trang. Nếu vẫn lỗi, kiểm tra file data.json có tồn tại trên GitHub không.
   </div>
 
   <div id="installBanner">
@@ -227,6 +226,7 @@
       <div class="tabs">
         <button class="tab active" data-tab="chat">Hỏi AI</button>
         <button class="tab" data-tab="filter">Lọc thủ công</button>
+        <button class="tab" data-tab="upload">Cập nhật dữ liệu</button>
       </div>
 
       <div id="tab-chat">
@@ -265,6 +265,21 @@
         <button class="primary" id="applyFilterBtn" style="width:100%;">Áp dụng</button>
         <button class="ghost" id="clearFilterBtn">Xoá bộ lọc</button>
       </div>
+
+      <div id="tab-upload" style="display:none;">
+        <h2>Cập nhật dữ liệu villa</h2>
+        <p class="hint">Tải lên file Excel (.xlsx) để thay thế toàn bộ danh sách villa. Cột cần có: Mã villa, Tên villa, Khu vực, Sức chứa, Giá, Tiện ích.</p>
+        <div class="field">
+          <label>Mật khẩu cập nhật</label>
+          <input type="password" id="uploadPassword" placeholder="Nhập mật khẩu">
+        </div>
+        <div class="field">
+          <label>File Excel (.xlsx)</label>
+          <input type="file" id="uploadFile" accept=".xlsx,.xls">
+        </div>
+        <button class="primary" id="uploadBtn" style="width:100%;">Tải lên & cập nhật</button>
+        <div id="uploadStatus" style="margin-top:12px; font-size:12.5px; line-height:1.5;"></div>
+      </div>
     </div>
 
     <div>
@@ -298,90 +313,36 @@
 
 <script>
 // ============================================================
-// Dữ liệu villa được lấy qua /api/sheet (server đọc SHEET_CSV_URL
-// từ Environment Variables trên Vercel — xem hướng dẫn triển khai).
+// Dữ liệu villa nằm trong file data.json (tĩnh, cùng thư mục với index.html).
+// Bắt đầu trống — dùng tab "Cập nhật dữ liệu" trong app để tải Excel lên lần đầu.
+// File này sau đó được ghi tự động mỗi khi bạn tải Excel mới lên.
 // ============================================================
-
-// Danh sách mẫu — CHỈ dùng khi chưa cấu hình Sheet, hoặc khi lấy Sheet thật bị lỗi.
-const FALLBACK_PRODUCTS = [
-  {id:"PT-014", name:"Ocean Cliff Villa", region:"Phan Thiết", guests:16, price:9200000, tags:["Hồ bơi vô cực","Sát biển","6 phòng ngủ"]},
-  {id:"PT-021", name:"Mũi Né Garden Villa", region:"Phan Thiết", guests:14, price:8500000, tags:["Sân vườn","5 phòng ngủ","Bếp riêng"]},
-  {id:"PQ-003", name:"Sunset Bay Resort Villa", region:"Phú Quốc", guests:20, price:14200000, tags:["Hồ bơi riêng","Bãi biển riêng","8 phòng ngủ"]},
-  {id:"DL-005", name:"Pine Hill Cottage", region:"Đà Lạt", guests:6, price:2900000, tags:["Lò sưởi","View đồi thông","3 phòng ngủ"]},
-  {id:"NT-002", name:"Diamond Bay Villa", region:"Nha Trang", guests:15, price:8700000, tags:["Hồ bơi riêng","4 phút ra biển","6 phòng ngủ"]},
-  {id:"HT-007", name:"Ancient Town Villa", region:"Hội An", guests:8, price:4600000, tags:["Gần phố cổ","3 phòng ngủ"]},
-  {id:"VT-004", name:"Vũng Tàu Beachfront Villa", region:"Vũng Tàu", guests:13, price:7200000, tags:["Sát biển","5 phòng ngủ"]},
-];
 
 const REGION_PALETTE = ["#2E6E63","#A94E22","#5B4A8A","#C6902F","#7A5230","#1E5E6B","#6B3FA0","#2F6690","#8A3324","#3E7C4A"];
 function colorForRegion(region){
   let hash = 0;
+  region = region || 'Khác';
   for(let i=0;i<region.length;i++){ hash = region.charCodeAt(i) + ((hash<<5)-hash); }
   return REGION_PALETTE[Math.abs(hash) % REGION_PALETTE.length];
 }
 
-// Chấp nhận vài cách đặt tên cột khác nhau trong Sheet, để đỡ phải sửa tiêu đề cột cho khớp tuyệt đối.
-function matchHeader(h, candidates){
-  const n = normalize(h).replace(/\s+/g,'');
-  return candidates.some(c => n.includes(normalize(c).replace(/\s+/g,'')));
-}
-function toNumber(v){
-  if(v==null) return null;
-  const digits = String(v).replace(/[^\d]/g,'');
-  return digits ? parseInt(digits) : null;
-}
-
-function rowsToProducts(rows){
-  if(!rows.length) return [];
-  const headers = Object.keys(rows[0]);
-  const col = {
-    id: headers.find(h=>matchHeader(h,['ma villa','ma san pham','id'])),
-    name: headers.find(h=>matchHeader(h,['ten villa','ten san pham','name'])),
-    region: headers.find(h=>matchHeader(h,['khu vuc','region'])),
-    guests: headers.find(h=>matchHeader(h,['suc chua','so khach','guests'])),
-    price: headers.find(h=>matchHeader(h,['gia','price'])),
-    tags: headers.find(h=>matchHeader(h,['tien ich','tags','amenities'])),
-  };
-  return rows
-    .filter(r => (col.name && r[col.name]) )
-    .map((r,i)=>{
-      const region = col.region ? String(r[col.region]||'').trim() : 'Khác';
-      return {
-        id: (col.id && r[col.id]) ? String(r[col.id]).trim() : ('SP-'+(i+1)),
-        name: String(r[col.name]).trim(),
-        region: region || 'Khác',
-        guests: col.guests ? (toNumber(r[col.guests]) || 0) : 0,
-        price: col.price ? (toNumber(r[col.price]) || 0) : 0,
-        tags: col.tags ? String(r[col.tags]||'').split(/[;,]/).map(t=>t.trim()).filter(Boolean) : [],
-        band: colorForRegion(region || 'Khác'),
-      };
-    });
-}
-
-let usingFallbackData = false;
+let dataLoadError = false;
 
 function loadProducts(){
-  return new Promise((resolve)=>{
-    fetch('/api/sheet')
-      .then(res=>{
-        if(!res.ok) throw new Error('sheet api error');
-        return res.text();
-      })
-      .then(csvText=>{
-        const parsed = Papa.parse(csvText, { header:true, skipEmptyLines:true });
-        const products = rowsToProducts(parsed.data);
-        if(products.length){
-          resolve(products);
-        }else{
-          usingFallbackData = true;
-          resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
-        }
-      })
-      .catch(()=>{
-        usingFallbackData = true;
-        resolve(FALLBACK_PRODUCTS.map(p=>({...p, band: colorForRegion(p.region)})));
-      });
-  });
+  const bustCache = '/data.json?v=' + Date.now();
+  return fetch(bustCache)
+    .then(res=>{
+      if(!res.ok) throw new Error('data.json not found');
+      return res.json();
+    })
+    .then(products=>{
+      if(!Array.isArray(products)) throw new Error('data.json không hợp lệ');
+      return products.map(p=>({...p, band: colorForRegion(p.region || 'Khác')}));
+    })
+    .catch(()=>{
+      dataLoadError = true;
+      return [];
+    });
 }
 
 let PRODUCTS = [];
@@ -393,20 +354,27 @@ function normalize(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-
 async function initApp(){
   document.getElementById('stat-total').textContent = '…';
   PRODUCTS = await loadProducts();
-  if(usingFallbackData){
-    document.getElementById('dataWarning').style.display = 'block';
-  }
 
   document.getElementById('stat-total').textContent = PRODUCTS.length;
   const regions = [...new Set(PRODUCTS.map(p=>p.region))];
   document.getElementById('stat-regions').textContent = regions.length;
+  fRegion.innerHTML = '<option value="">Tất cả khu vực</option>';
   regions.forEach(r=>{
     const opt = document.createElement('option');
     opt.value = r; opt.textContent = r;
     fRegion.appendChild(opt);
   });
-  renderEmpty('Sẵn sàng tra cứu', `Đã tải ${PRODUCTS.length} sản phẩm. Hỏi AI hoặc dùng bộ lọc thủ công bên trái.`);
+
+  if(dataLoadError){
+    document.getElementById('dataWarning').style.display = 'block';
+    renderEmpty('Không tải được dữ liệu', 'Có lỗi khi lấy data.json — thử tải lại trang, nếu vẫn lỗi thì báo lại.');
+  }else if(PRODUCTS.length === 0){
+    renderEmpty('Chưa có dữ liệu villa', 'Vào tab "Cập nhật dữ liệu" bên trái để tải file Excel lên lần đầu.');
+  }else{
+    renderEmpty('Sẵn sàng tra cứu', `Đã tải ${PRODUCTS.length} sản phẩm. Hỏi AI hoặc dùng bộ lọc thủ công bên trái.`);
+  }
 }
+
 
 const log = document.getElementById('log');
 const form = document.getElementById('chatForm');
@@ -425,6 +393,7 @@ document.querySelectorAll('.tab').forEach(t=>{
     t.classList.add('active');
     document.getElementById('tab-chat').style.display = t.dataset.tab==='chat' ? 'block':'none';
     document.getElementById('tab-filter').style.display = t.dataset.tab==='filter' ? 'block':'none';
+    document.getElementById('tab-upload').style.display = t.dataset.tab==='upload' ? 'block':'none';
   });
 });
 
@@ -571,6 +540,53 @@ document.getElementById('clearFilterBtn').addEventListener('click', ()=>{
   fRegion.value=''; document.getElementById('fGuests').value=''; document.getElementById('fPrice').value='';
   renderEmpty('Đã xoá bộ lọc', 'Chọn tiêu chí mới hoặc chuyển sang tab Hỏi AI.');
   resultCount.textContent = '— chưa có câu hỏi —';
+});
+
+// ---------- upload dữ liệu Excel ----------
+function fileToBase64(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=> resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById('uploadBtn').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('uploadStatus');
+  const password = document.getElementById('uploadPassword').value;
+  const fileInput = document.getElementById('uploadFile');
+  const file = fileInput.files[0];
+  const btn = document.getElementById('uploadBtn');
+
+  if(!password){ statusEl.style.color = '#E08585'; statusEl.textContent = 'Nhập mật khẩu trước đã.'; return; }
+  if(!file){ statusEl.style.color = '#E08585'; statusEl.textContent = 'Chọn file Excel trước đã.'; return; }
+
+  btn.disabled = true;
+  statusEl.style.color = '#B9C7BF';
+  statusEl.textContent = 'Đang tải lên và đọc file...';
+
+  try{
+    const fileBase64 = await fileToBase64(file);
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ password, filename: file.name, fileBase64 })
+    });
+    const data = await res.json();
+    if(!res.ok){
+      statusEl.style.color = '#E08585';
+      statusEl.textContent = '❌ ' + (data.error || 'Có lỗi xảy ra.');
+    }else{
+      statusEl.style.color = '#7FBF9A';
+      statusEl.textContent = `✅ Đã cập nhật ${data.count} sản phẩm. Web sẽ tự deploy lại trong khoảng 30-60 giây, sau đó tải lại trang (kéo xuống làm mới) để thấy dữ liệu mới.`;
+      fileInput.value = '';
+    }
+  }catch(e){
+    statusEl.style.color = '#E08585';
+    statusEl.textContent = '❌ Lỗi kết nối: ' + e.message;
+  }
+  btn.disabled = false;
 });
 
 // ---------- detail modal ----------
