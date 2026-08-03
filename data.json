@@ -1,1 +1,1649 @@
-[]
+[
+  {
+    "id": "V001",
+    "name": "CHILL VILLA - Chill 1 Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 7000000,
+    "tags": [
+      "6 Phòng Ngủ",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V002",
+    "name": "ĐẠI DƯƠNG Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 45,
+    "price": 8500000,
+    "tags": [
+      "10 Phòng Ngủ",
+      "T6-CN: 9.500.000đ",
+      "T7-Lễ: 16.500.000đ"
+    ]
+  },
+  {
+    "id": "V003",
+    "name": "MOON LAKE Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 3900000,
+    "tags": [
+      "3 Phòng Ngủ",
+      "T6-CN: 4.200.000đ",
+      "T7-Lễ: 7.200.000đ"
+    ]
+  },
+  {
+    "id": "V004",
+    "name": "LÂM VIÊN Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 40,
+    "price": 10000000,
+    "tags": [
+      "8 Phòng Ngủ",
+      "T6-CN: 10.000.000đ",
+      "T7-Lễ: 17.000.000đ"
+    ]
+  },
+  {
+    "id": "V005",
+    "name": "ANN HOUSE Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 6500000,
+    "tags": [
+      "4 Phòng Ngủ",
+      "T6-CN: 7.500.000đ",
+      "T7-Lễ: 13.000.000đ"
+    ]
+  },
+  {
+    "id": "V006",
+    "name": "AN VIÊN 2 Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 15,
+    "price": 4900000,
+    "tags": [
+      "3 Phòng Ngủ",
+      "T6-CN: 5.900.000đ",
+      "T7-Lễ: 7.500.000đ"
+    ]
+  },
+  {
+    "id": "V007",
+    "name": "SHOJI HOME Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 7000000,
+    "tags": [
+      "3 Phòng Ngủ",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V008",
+    "name": "COSY HOUSE K1 Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 60,
+    "price": 14000000,
+    "tags": [
+      "8 Phòng Ngủ",
+      "T6-CN: 18.000.000đ",
+      "T7-Lễ: 24.000.000đ"
+    ]
+  },
+  {
+    "id": "V009",
+    "name": "COSY HOUSE k2 Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 5000000,
+    "tags": [
+      "5 Phòng Ngủ",
+      "T6-CN: 7.000.000đ",
+      "T7-Lễ: 10.000.000đ"
+    ]
+  },
+  {
+    "id": "V010",
+    "name": "VINA HOUSE Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 14,
+    "price": 4200000,
+    "tags": [
+      "4 Phòng Ngủ",
+      "T6-CN: 4.800.000đ",
+      "T7-Lễ: 6.900.000đ"
+    ]
+  },
+  {
+    "id": "V011",
+    "name": "BÌNH YÊN COTTAGE Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 12,
+    "price": 3000000,
+    "tags": [
+      "3 Phòng Ngủ",
+      "T6-CN: 3.500.000đ",
+      "T7-Lễ: 5.000.000đ"
+    ]
+  },
+  {
+    "id": "V012",
+    "name": "ĐỒNG ĐÒ HOUSE 5 Ngủ Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 6500000,
+    "tags": [
+      "5 Phòng Ngủ",
+      "T6-CN: 7.500.000đ",
+      "T7-Lễ: 11.000.000đ"
+    ]
+  },
+  {
+    "id": "V013",
+    "name": "ĐỒNG ĐÒ HOUSE 4 Ngủ Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 22,
+    "price": 4500000,
+    "tags": [
+      "4 Phòng Ngủ",
+      "T6-CN: 5.500.000đ",
+      "T7-Lễ: 9.000.000đ"
+    ]
+  },
+  {
+    "id": "V014",
+    "name": "SUMMERLY khu A Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 50,
+    "price": 18000000,
+    "tags": [
+      "10 Phòng Ngủ",
+      "T6-CN: 21.000.000đ",
+      "T7-Lễ: 25.000.000đ"
+    ]
+  },
+  {
+    "id": "V015",
+    "name": "SUMMERLY khu B Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 8000000,
+    "tags": [
+      "5 Phòng Ngủ",
+      "T6-CN: 11.000.000đ",
+      "T7-Lễ: 13.000.000đ"
+    ]
+  },
+  {
+    "id": "V016",
+    "name": "Island 1 Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 12,
+    "price": 7000000,
+    "tags": [
+      "2PN",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V017",
+    "name": "Island 2 Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 12,
+    "price": 7000000,
+    "tags": [
+      "2PN",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V018",
+    "name": "MINH TÂN Đồng Đò - Sóc Sơn (View hồ) - khu A",
+    "region": "SÓC SƠN",
+    "guests": 80,
+    "price": 8000000,
+    "tags": [
+      "7PN",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 13.000.000đ"
+    ]
+  },
+  {
+    "id": "V019",
+    "name": "MINH TÂN Đồng Đò - Sóc Sơn (View hồ) - khu B",
+    "region": "SÓC SƠN",
+    "guests": 35,
+    "price": 11500000,
+    "tags": [
+      "7PN",
+      "T6-CN: 14.000.000đ"
+    ]
+  },
+  {
+    "id": "V020",
+    "name": "Lake House Đồng Đò - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 5500000,
+    "tags": [
+      "7 Phòng ngủ",
+      "T6-CN: 5.500.000đ",
+      "T7-Lễ: 5.500.000đ"
+    ]
+  },
+  {
+    "id": "V021",
+    "name": "Lyly Villa - Minh Trí - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 27,
+    "price": 5000000,
+    "tags": [
+      "8 Phòng ngủ",
+      "T6-CN: 7.000.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V022",
+    "name": "Rose Garden - Minh Trí Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 5000000,
+    "tags": [
+      "5 Phòng ngủ",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V023",
+    "name": "Papa House - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 15,
+    "price": 2200000,
+    "tags": [
+      "3PN",
+      "T6-CN: 3.200.000đ",
+      "T7-Lễ: 3.700.000đ"
+    ]
+  },
+  {
+    "id": "V024",
+    "name": "HM Villa - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 50,
+    "price": 8000000,
+    "tags": [
+      "9PN+ 1 Tập Thể",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 14.000.000đ"
+    ]
+  },
+  {
+    "id": "V025",
+    "name": "D'Angelia - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 40,
+    "price": 6500000,
+    "tags": [
+      "6 PN",
+      "T6-CN: 7.500.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V026",
+    "name": "Khánh Huyền - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 3000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 3.500.000đ",
+      "T7-Lễ: 6.500.000đ"
+    ]
+  },
+  {
+    "id": "V027",
+    "name": "Bin Garden - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 35,
+    "price": 5500000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 11.000.000đ"
+    ]
+  },
+  {
+    "id": "V028",
+    "name": "Bright House - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 3500000,
+    "tags": [
+      "4PN",
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 5.500.000đ"
+    ]
+  },
+  {
+    "id": "V029",
+    "name": "White House - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 6000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V030",
+    "name": "Eden 1 Villa - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 4500000,
+    "tags": [
+      "3PN",
+      "T6-CN: 5.500.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V031",
+    "name": "Eden 2 Villa - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 10,
+    "price": 3500000,
+    "tags": [
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 7.000.000đ"
+    ]
+  },
+  {
+    "id": "V032",
+    "name": "Bucking Ham - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 4000000,
+    "tags": [
+      "6PN",
+      "T6-CN: 5.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V033",
+    "name": "Blue Mountain - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 8000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V034",
+    "name": "Dragon hill 1- Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 40,
+    "price": 6000000,
+    "tags": [
+      "10PN",
+      "T6-CN: 7.000.000đ",
+      "T7-Lễ: 13.000.000đ"
+    ]
+  },
+  {
+    "id": "V035",
+    "name": "Dragon hill 2 - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 12,
+    "price": 2500000,
+    "tags": [
+      "T6-CN: 3.000.000đ",
+      "T7-Lễ: 4.000.000đ"
+    ]
+  },
+  {
+    "id": "V036",
+    "name": "Tom - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 16,
+    "price": 2500000,
+    "tags": [
+      "4PN",
+      "T6-CN: 3.500.000đ",
+      "T7-Lễ: 5.000.000đ"
+    ]
+  },
+  {
+    "id": "V037",
+    "name": "Sapavilion - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 10,
+    "price": 3000000,
+    "tags": [
+      "3PN",
+      "T6-CN: 3.000.000đ",
+      "T7-Lễ: 5.900.000đ"
+    ]
+  },
+  {
+    "id": "V038",
+    "name": "Nhà Sáng - Minh Phú - Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 35,
+    "price": 9000000,
+    "tags": [
+      "8PN",
+      "T6-CN: 10.000.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V039",
+    "name": "Hip Villa - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 8500000,
+    "tags": [
+      "8PN",
+      "T6-CN: 10.000.000đ",
+      "T7-Lễ: 15.000.000đ"
+    ]
+  },
+  {
+    "id": "V040",
+    "name": "Mya - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 3500000,
+    "tags": [
+      "4PN",
+      "T6-CN: 4.200.000đ",
+      "T7-Lễ: 7.500.000đ"
+    ]
+  },
+  {
+    "id": "V041",
+    "name": "MLD - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 3500000,
+    "tags": [
+      "4PN+ 1 tập thể",
+      "T6-CN: 4.500.000đ",
+      "T7-Lễ: 7.500.000đ"
+    ]
+  },
+  {
+    "id": "V042",
+    "name": "Eagle 1 - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 25,
+    "price": 3500000,
+    "tags": [
+      "2PN+ 1 tập thể",
+      "T6-CN: 4.500.000đ",
+      "T7-Lễ: 7.000.000đ"
+    ]
+  },
+  {
+    "id": "V043",
+    "name": "Eagle 2 - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 15,
+    "price": 2800000,
+    "tags": [
+      "2 PN",
+      "T6-CN: 3.300.000đ",
+      "T7-Lễ: 5.500.000đ"
+    ]
+  },
+  {
+    "id": "V044",
+    "name": "1974 Villa - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 40,
+    "price": 6000000,
+    "tags": [
+      "6PN+1 tập thể",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 10.000.000đ"
+    ]
+  },
+  {
+    "id": "V045",
+    "name": "La Maison Villa - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 4000000,
+    "tags": [
+      "6PN",
+      "T6-CN: 5.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V046",
+    "name": "Villatel A - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 16,
+    "price": 4000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 5.000.000đ",
+      "T7-Lễ: 6.500.000đ"
+    ]
+  },
+  {
+    "id": "V047",
+    "name": "Villatel B - Minh Phú - Sóc sơn",
+    "region": "SÓC SƠN",
+    "guests": 16,
+    "price": 4000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 5.000.000đ",
+      "T7-Lễ: 6.500.000đ"
+    ]
+  },
+  {
+    "id": "V048",
+    "name": "Rừng thông xanh - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 7000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 9.500.000đ"
+    ]
+  },
+  {
+    "id": "V049",
+    "name": "Pine 1 rừng thông Minh phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 15,
+    "price": 5000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V050",
+    "name": "Pine 2 rừng thông Minh phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 8,
+    "price": 3000000,
+    "tags": [
+      "2PN",
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 4.500.000đ"
+    ]
+  },
+  {
+    "id": "V051",
+    "name": "Pine 3 view hồ Minh phú Sóc Sơn (View hồ)",
+    "region": "SÓC SƠN",
+    "guests": 13,
+    "price": 6000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 7.000.000đ",
+      "T7-Lễ: 9.000.000đ"
+    ]
+  },
+  {
+    "id": "V052",
+    "name": "Rainbow - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 2800000,
+    "tags": [
+      "4PN+ 1 Tập thể",
+      "T6-CN: 2.800.000đ",
+      "T7-Lễ: 4.500.000đ"
+    ]
+  },
+  {
+    "id": "V053",
+    "name": "Maii house - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 2600000,
+    "tags": [
+      "4PN",
+      "T6-CN: 2.600.000đ",
+      "T7-Lễ: 6.000.000đ"
+    ]
+  },
+  {
+    "id": "V054",
+    "name": "Emmit Villa - Minh Phú - Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 5000000,
+    "tags": [
+      "3PN + 1 Tập thể",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 5.000.000đ"
+    ]
+  },
+  {
+    "id": "V055",
+    "name": "VŨ Villa - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 20,
+    "price": 5000000,
+    "tags": [
+      "4PN+ 1 Tập Thể",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 7.000.000đ"
+    ]
+  },
+  {
+    "id": "V056",
+    "name": "Nottinghill - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 30,
+    "price": 3000000,
+    "tags": [
+      "5 phòng ngủ",
+      "T6-CN: 4.200.000đ",
+      "T7-Lễ: 6.000.000đ"
+    ]
+  },
+  {
+    "id": "V057",
+    "name": "SAM HOUSE 1 Lâm Trường - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 9,
+    "price": 2000000,
+    "tags": [
+      "2 Phòng ngủ",
+      "T6-CN: 2.000.000đ",
+      "T7-Lễ: 3.000.000đ"
+    ]
+  },
+  {
+    "id": "V058",
+    "name": "SAM HOUSE 2 Lâm Trường - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": 12,
+    "price": 2500000,
+    "tags": [
+      "2 Phòng ngủ",
+      "T6-CN: 2.500.000đ",
+      "T7-Lễ: 4.000.000đ"
+    ]
+  },
+  {
+    "id": "V059",
+    "name": "Storm Villa Lâm Trường - Minh Phú Sóc Sơn",
+    "region": "SÓC SƠN",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V060",
+    "name": "Demontana Tango Ba vì",
+    "region": "BA VÌ",
+    "guests": 25,
+    "price": 5500000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 10.500.000đ"
+    ]
+  },
+  {
+    "id": "V061",
+    "name": "Demontana Flamcenco Ba vì",
+    "region": "BA VÌ",
+    "guests": 25,
+    "price": 5500000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 10.500.000đ"
+    ]
+  },
+  {
+    "id": "V062",
+    "name": "Pom Ba vì",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 6000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V063",
+    "name": "Camelia Ba Vì",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 5500000,
+    "tags": [
+      "7PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 10.500.000đ"
+    ]
+  },
+  {
+    "id": "V064",
+    "name": "Nhà Chân Mây",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 3600000,
+    "tags": [
+      "3PN",
+      "T6-CN: 3.600.000đ",
+      "T7-Lễ: 6.500.000đ"
+    ]
+  },
+  {
+    "id": "V065",
+    "name": "Green Hill",
+    "region": "BA VÌ",
+    "guests": 40,
+    "price": 7000000,
+    "tags": [
+      "4PN+ tập thể",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 14.000.000đ"
+    ]
+  },
+  {
+    "id": "V066",
+    "name": "Bình An Garden",
+    "region": "BA VÌ",
+    "guests": 90,
+    "price": 8000000,
+    "tags": [
+      "15 Bung+ 1 Tập Thể",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 11.000.000đ"
+    ]
+  },
+  {
+    "id": "V067",
+    "name": "Holi Ba vì (View hồ)",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 5500000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 9.500.000đ"
+    ]
+  },
+  {
+    "id": "V068",
+    "name": "Maple 1",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 6000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 9.200.000đ"
+    ]
+  },
+  {
+    "id": "V069",
+    "name": "Maple 2",
+    "region": "BA VÌ",
+    "guests": 25,
+    "price": 6000000,
+    "tags": [
+      "4PN+ 1 tập thể",
+      "T6-CN: 8.000.000đ",
+      "T7-Lễ: 9.200.000đ"
+    ]
+  },
+  {
+    "id": "V070",
+    "name": "Memory Ba vì",
+    "region": "BA VÌ",
+    "guests": 15,
+    "price": 2800000,
+    "tags": [
+      "2PN+1 tập thể",
+      "T6-CN: 3.800.000đ",
+      "T7-Lễ: 5.800.000đ"
+    ]
+  },
+  {
+    "id": "V071",
+    "name": "Mia Ba vì",
+    "region": "BA VÌ",
+    "guests": 15,
+    "price": 2800000,
+    "tags": [
+      "2PN+1 tập thể",
+      "T6-CN: 3.800.000đ",
+      "T7-Lễ: 5.800.000đ"
+    ]
+  },
+  {
+    "id": "V072",
+    "name": "Nature Ba vì",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 2500000,
+    "tags": [
+      "4PN+ 2 bung",
+      "T6-CN: 2.500.000đ",
+      "T7-Lễ: 6.500.000đ"
+    ]
+  },
+  {
+    "id": "V073",
+    "name": "QC art Ba vì",
+    "region": "BA VÌ",
+    "guests": 40,
+    "price": 5000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V074",
+    "name": "Sun Hill",
+    "region": "BA VÌ",
+    "guests": 24,
+    "price": 2900000,
+    "tags": [
+      "5PN",
+      "T6-CN: 2.900.000đ",
+      "T7-Lễ: 7.500.000đ"
+    ]
+  },
+  {
+    "id": "V075",
+    "name": "Tản đà lakeview (View hồ)",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 6500000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V076",
+    "name": "Tản view V18",
+    "region": "BA VÌ",
+    "guests": 23,
+    "price": 4000000,
+    "tags": [
+      "4PN+ 1 Tập thể",
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 6.000.000đ"
+    ]
+  },
+  {
+    "id": "V077",
+    "name": "Tản view V20",
+    "region": "BA VÌ",
+    "guests": 28,
+    "price": 4500000,
+    "tags": [
+      "4PN+ 1 Tập thể",
+      "T6-CN: 4.500.000đ",
+      "T7-Lễ: 7.500.000đ"
+    ]
+  },
+  {
+    "id": "V078",
+    "name": "White House",
+    "region": "BA VÌ",
+    "guests": 60,
+    "price": 12500000,
+    "tags": [
+      "4PN+2 tập thể",
+      "T6-CN: 14.500.000đ",
+      "T7-Lễ: 12.500.000đ"
+    ]
+  },
+  {
+    "id": "V079",
+    "name": "VRO",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 4000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 4.500.000đ",
+      "T7-Lễ: 7.000.000đ"
+    ]
+  },
+  {
+    "id": "V080",
+    "name": "Wyn 1 Ba vì",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 5000000,
+    "tags": [
+      "5PN+ 1 tập thể",
+      "T6-CN: 7.500.000đ",
+      "T7-Lễ: 11.000.000đ"
+    ]
+  },
+  {
+    "id": "V081",
+    "name": "Wyn 2 Ba vì",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 5000000,
+    "tags": [
+      "5PN+ 1 tập thể",
+      "T6-CN: 7.500.000đ",
+      "T7-Lễ: 11.000.000đ"
+    ]
+  },
+  {
+    "id": "V082",
+    "name": "Yoti Ba vì",
+    "region": "BA VÌ",
+    "guests": 12,
+    "price": 4800000,
+    "tags": [
+      "3PN",
+      "T6-CN: 5.900.000đ",
+      "T7-Lễ: 7.700.000đ"
+    ]
+  },
+  {
+    "id": "V083",
+    "name": "S Villa",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 6800000,
+    "tags": [
+      "7PN",
+      "T6-CN: 6.800.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V084",
+    "name": "Vườn đom đóm",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 1200000,
+    "tags": [
+      "3PN+1 tập thể+ bung",
+      "T6-CN: 1.200.000đ",
+      "T7-Lễ: 2.800.000đ"
+    ]
+  },
+  {
+    "id": "V085",
+    "name": "Hestia",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 3000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 3.000.000đ",
+      "T7-Lễ: 5.000.000đ"
+    ]
+  },
+  {
+    "id": "V086",
+    "name": "1981.0",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 3000000,
+    "tags": [
+      "3PN",
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 6.000.000đ"
+    ]
+  },
+  {
+    "id": "V087",
+    "name": "Cung Mây",
+    "region": "BA VÌ",
+    "guests": 40,
+    "price": 7500000,
+    "tags": [
+      "6PN",
+      "T6-CN: 8.800.000đ",
+      "T7-Lễ: 12.000.000đ"
+    ]
+  },
+  {
+    "id": "V088",
+    "name": "Sunrise",
+    "region": "BA VÌ",
+    "guests": 40,
+    "price": 11000000,
+    "tags": [
+      "6PN+2 bung",
+      "T6-CN: 11.500.000đ",
+      "T7-Lễ: 11.000.000đ"
+    ]
+  },
+  {
+    "id": "V089",
+    "name": "Kefi 4PN",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 3600000,
+    "tags": [
+      "4PN",
+      "T6-CN: 5.400.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V090",
+    "name": "Kefi 6p",
+    "region": "BA VÌ",
+    "guests": 25,
+    "price": 4400000,
+    "tags": [
+      "6PN",
+      "T6-CN: 5.850.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V091",
+    "name": "1001 Lakeside Urban (View hồ)",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": null,
+    "tags": [
+      "4PN+1 tập thể"
+    ]
+  },
+  {
+    "id": "V092",
+    "name": "1001 Lakeside Moccoro (View hồ)",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": null,
+    "tags": [
+      "4PN+1 tập thể"
+    ]
+  },
+  {
+    "id": "V093",
+    "name": "Ostrich House",
+    "region": "BA VÌ",
+    "guests": 25,
+    "price": 4800000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V094",
+    "name": "Iris House",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 3000000,
+    "tags": [
+      "3PN",
+      "T6-CN: 3.000.000đ",
+      "T7-Lễ: 5.500.000đ"
+    ]
+  },
+  {
+    "id": "V095",
+    "name": "Airi Villa",
+    "region": "BA VÌ",
+    "guests": 20,
+    "price": 2500000,
+    "tags": [
+      "4PN",
+      "T6-CN: 2.500.000đ",
+      "T7-Lễ: 4.200.000đ"
+    ]
+  },
+  {
+    "id": "V096",
+    "name": "Canary",
+    "region": "BA VÌ",
+    "guests": 30,
+    "price": 2800000,
+    "tags": [
+      "3PN+ 2 bung",
+      "T6-CN: 2.800.000đ",
+      "T7-Lễ: 5.000.000đ"
+    ]
+  },
+  {
+    "id": "V097",
+    "name": "Mít Garden Sơn Tây",
+    "region": "SƠN TÂY",
+    "guests": 20,
+    "price": 5500000,
+    "tags": [
+      "6PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 7.000.000đ"
+    ]
+  },
+  {
+    "id": "V098",
+    "name": "Gem Sơn Tây",
+    "region": "SƠN TÂY",
+    "guests": 25,
+    "price": 5500000,
+    "tags": [
+      "4PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V099",
+    "name": "LanD Sơn Tây",
+    "region": "SƠN TÂY",
+    "guests": 15,
+    "price": 6000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 7.000.000đ",
+      "T7-Lễ: 9.000.000đ"
+    ]
+  },
+  {
+    "id": "V100",
+    "name": "Vườn Lan Sơn Tây",
+    "region": "SƠN TÂY",
+    "guests": 16,
+    "price": null,
+    "tags": [
+      "5PN"
+    ]
+  },
+  {
+    "id": "V101",
+    "name": "Lạc Lạc",
+    "region": "SƠN TÂY",
+    "guests": 30,
+    "price": 5000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 7.000.000đ"
+    ]
+  },
+  {
+    "id": "V102",
+    "name": "Hoàng Yến",
+    "region": "SƠN TÂY",
+    "guests": 15,
+    "price": 5500000,
+    "tags": [
+      "4PN",
+      "T6-CN: 6.500.000đ",
+      "T7-Lễ: 8.500.000đ"
+    ]
+  },
+  {
+    "id": "V103",
+    "name": "Ken house",
+    "region": "SƠN TÂY",
+    "guests": 25,
+    "price": null,
+    "tags": [
+      "3PN+1 tập thể"
+    ]
+  },
+  {
+    "id": "V104",
+    "name": "An garden",
+    "region": "SƠN TÂY",
+    "guests": 40,
+    "price": 10500000,
+    "tags": [
+      "4PN+1 tập thể",
+      "T6-CN: 13.500.000đ",
+      "T7-Lễ: 16.500.000đ"
+    ]
+  },
+  {
+    "id": "V105",
+    "name": "DC Aroma (View hồ)",
+    "region": "HÒA BÌNH",
+    "guests": 30,
+    "price": 6800000000,
+    "tags": [
+      "6PN+2 tập thể",
+      "T6-CN: 7.800.000.000đ",
+      "T7-Lễ: 12.800.000.000đ"
+    ]
+  },
+  {
+    "id": "V106",
+    "name": "Plus Mansion",
+    "region": "HÒA BÌNH",
+    "guests": 25,
+    "price": 6500000000,
+    "tags": [
+      "4PN",
+      "T6-CN: 7.500.000.000đ",
+      "T7-Lễ: 12.500.000.000đ"
+    ]
+  },
+  {
+    "id": "V107",
+    "name": "Onsen An viên",
+    "region": "HÒA BÌNH",
+    "guests": 20,
+    "price": 4900000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 5.900.000.000đ",
+      "T7-Lễ: 9.900.000.000đ"
+    ]
+  },
+  {
+    "id": "V108",
+    "name": "Sapphire A",
+    "region": "HÒA BÌNH",
+    "guests": 25,
+    "price": 7500000,
+    "tags": [
+      "5PN",
+      "T6-CN: 9.000.000đ",
+      "T7-Lễ: 12.500.000đ"
+    ]
+  },
+  {
+    "id": "V109",
+    "name": "Sapphire B",
+    "region": "HÒA BÌNH",
+    "guests": 30,
+    "price": 8500000,
+    "tags": [
+      "6PN",
+      "T6-CN: 10.000.000đ",
+      "T7-Lễ: 14.500.000đ"
+    ]
+  },
+  {
+    "id": "V110",
+    "name": "Hồ Quýt (View hồ)",
+    "region": "HÒA BÌNH",
+    "guests": 45,
+    "price": 5000000,
+    "tags": [
+      "8PN+ 2 tập thể",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 8.000.000đ"
+    ]
+  },
+  {
+    "id": "V111",
+    "name": "Mount Spring",
+    "region": "HÒA BÌNH",
+    "guests": 20,
+    "price": 5000000,
+    "tags": [
+      "6PN",
+      "T6-CN: 7.000.000đ",
+      "T7-Lễ: 8.300.000đ"
+    ]
+  },
+  {
+    "id": "V112",
+    "name": "Sun6PN",
+    "region": "HÒA BÌNH",
+    "guests": 30,
+    "price": 5500000,
+    "tags": [
+      "6PN",
+      "T6-CN: 7.800.000đ",
+      "T7-Lễ: 9.500.000đ"
+    ]
+  },
+  {
+    "id": "V113",
+    "name": "Hoa An Viên 1 (View hồ)",
+    "region": "HÒA BÌNH",
+    "guests": 25,
+    "price": 4000000,
+    "tags": [
+      "4PN+1 tập thể",
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 6.000.000đ"
+    ]
+  },
+  {
+    "id": "V114",
+    "name": "Hoa An Viên 2 (View hồ)",
+    "region": "HÒA BÌNH",
+    "guests": 20,
+    "price": 4000000,
+    "tags": [
+      "3PN+1 tập thể",
+      "T6-CN: 4.000.000đ",
+      "T7-Lễ: 6.000.000đ"
+    ]
+  },
+  {
+    "id": "V115",
+    "name": "Candy Villa",
+    "region": "HÒA BÌNH",
+    "guests": 15,
+    "price": 9000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 11.000.000đ",
+      "T7-Lễ: 15.000.000đ"
+    ]
+  },
+  {
+    "id": "V116",
+    "name": "Samuel",
+    "region": "HÒA BÌNH",
+    "guests": 28,
+    "price": 5000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 10.000.000đ"
+    ]
+  },
+  {
+    "id": "V117",
+    "name": "Balu",
+    "region": "HÒA BÌNH",
+    "guests": 15,
+    "price": null,
+    "tags": [
+      "6pn"
+    ]
+  },
+  {
+    "id": "V118",
+    "name": "Bula",
+    "region": "HÒA BÌNH",
+    "guests": 26,
+    "price": null,
+    "tags": [
+      "6pn"
+    ]
+  },
+  {
+    "id": "V119",
+    "name": "đồng quýt retreat",
+    "region": "HÒA BÌNH",
+    "guests": 22,
+    "price": null,
+    "tags": [
+      "6pn"
+    ]
+  },
+  {
+    "id": "V120",
+    "name": "ANN VILLA",
+    "region": "HÒA BÌNH",
+    "guests": 18,
+    "price": null,
+    "tags": [
+      "6PN"
+    ]
+  },
+  {
+    "id": "V121",
+    "name": "Pis land",
+    "region": "HÒA BÌNH",
+    "guests": 14,
+    "price": null,
+    "tags": [
+      "5pn"
+    ]
+  },
+  {
+    "id": "V122",
+    "name": "Glory moutain view",
+    "region": "HÒA BÌNH",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V123",
+    "name": "Bin thạch thất",
+    "region": "THẠCH THẤT",
+    "guests": 25,
+    "price": 5000000,
+    "tags": [
+      "6PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 10.000.000đ"
+    ]
+  },
+  {
+    "id": "V124",
+    "name": "Sam Thạch thất",
+    "region": "THẠCH THẤT",
+    "guests": 25,
+    "price": 5000000,
+    "tags": [
+      "6PN",
+      "T6-CN: 6.000.000đ",
+      "T7-Lễ: 10.000.000đ"
+    ]
+  },
+  {
+    "id": "V125",
+    "name": "Manhill",
+    "region": "THẠCH THẤT",
+    "guests": 30,
+    "price": 7000000,
+    "tags": [
+      "5PN",
+      "T6-CN: 9.500.000đ",
+      "T7-Lễ: 15.000.000đ"
+    ]
+  },
+  {
+    "id": "V126",
+    "name": "E42 tam đảo",
+    "region": "THẠCH THẤT",
+    "guests": 30,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V127",
+    "name": "Grand tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V128",
+    "name": "C13 tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V129",
+    "name": "A2 tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V130",
+    "name": "Stone villa",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V131",
+    "name": "U- Space",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V132",
+    "name": "A19 tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 10,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V133",
+    "name": "Oasis Spring",
+    "region": "TAM ĐẢO",
+    "guests": 15,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V134",
+    "name": "Evani tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 25,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V135",
+    "name": "B10 tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 25,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V136",
+    "name": "C21 tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 15,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V137",
+    "name": "Finlandia tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 15,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V138",
+    "name": "4 Ngủ golf",
+    "region": "TAM ĐẢO",
+    "guests": 15,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V139",
+    "name": "Clup tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 20,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V140",
+    "name": "C12 tam đảo",
+    "region": "TAM ĐẢO",
+    "guests": 16,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V141",
+    "name": "Sân golf 6 ngủ",
+    "region": "TAM ĐẢO",
+    "guests": 16,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V142",
+    "name": "Sunshine villa",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V143",
+    "name": "Lucci",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V144",
+    "name": "Nam casa",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V145",
+    "name": "E40",
+    "region": "TAM ĐẢO",
+    "guests": null,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V146",
+    "name": "D14",
+    "region": "TAM ĐẢO",
+    "guests": 30,
+    "price": null,
+    "tags": []
+  },
+  {
+    "id": "V147",
+    "name": "A20",
+    "region": "TAM ĐẢO",
+    "guests": 22,
+    "price": null,
+    "tags": []
+  }
+]
